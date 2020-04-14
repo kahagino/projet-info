@@ -74,7 +74,7 @@ void CFenetre::afficherCourbe(double (*f)(double), double const& precision, COLO
     for(double x = xmin; x < xmax; x+=precision)
     {
         int yC = -(m_offsety + intervaly*f(x)) + 2*m_offsety; //le - pour inverser la courbe
-        if((m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty))
+        if(m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty && yC > 0)
             //on n'affiche pas la courbe en dehors du cadre
             SetPixel(m_monDC, m_rox + m_offsetx + ((m_rectx/(xmax-xmin)*x)), m_roy + yC, COULEUR);
     }
@@ -106,7 +106,7 @@ void CFenetre::afficherPolynome(CPolynome monPoly, double const& precision, COLO
     for(double x = xmin; x < xmax; x+=precision)
     {
         int yC = -(m_offsety + intervaly*monPoly.calcule(x)) + 2*m_offsety; //le - pour inverser la courbe
-        if((m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty))
+        if(m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty && yC > 0)
             //on n'affiche pas la courbe en dehors du cadre
             SetPixel(m_monDC, m_rox + m_offsetx + ((m_rectx/(xmax-xmin)*x)), m_roy + yC, COULEUR);
     }
