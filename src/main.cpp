@@ -20,18 +20,23 @@ int main() {
     cout << monPoly << endl;
     
 
-    double precision = 0.001; //la precision augmente le nombre de points
+    double precision = 0.01; //la precision augmente le nombre de points
 
-    CFenetre maFenetre(400, 400);
-    
-    maFenetre.setRectOffset(200, 10);   //expliquer dans le rapport que c'est juste un ajout
+    CFenetre maFenetre1(200, 200, 3.14*6, 4, 9, 2);
+    maFenetre1.setRectOffset(300, 10);   //expliquer dans le rapport que c'est juste un ajout
                                         //de m_rox et m_roy dans tous les SetOffset
 
-    maFenetre.afficherRectV2(RGB(255, 255, 255));
-    maFenetre.afficherCourbe(f, precision, RGB(255, 0, 0));
-    maFenetre.afficherCourbe(g, precision, RGB(0, 255, 0));
-    maFenetre.afficherPolynome(monPoly, precision, RGB(0,0,255));
-    maFenetre.afficherIntervalles();
+    maFenetre1.afficherRectV2(RGB(255, 255, 255));
+    maFenetre1.afficherCourbe(f, precision, RGB(255, 0, 0));
+    maFenetre1.afficherCourbe(g, precision, RGB(0, 255, 0));
+    maFenetre1.afficherIntervalles();
+
+    precision = 0.001;
+    CFenetre maFenetre2(200, 200, 4, 4, 1, 3);
+    maFenetre2.setRectOffset(510, 10);
+    maFenetre2.afficherRectV2(RGB(255, 255, 255));
+    maFenetre2.afficherPolynome(monPoly, precision, RGB(0,0,255));
+    maFenetre2.afficherIntervalles();
     //donner le passage en argument de la fonction dans
     //le rapport
 
