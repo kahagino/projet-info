@@ -15,6 +15,8 @@ public:
     void afficherCourbe(double (*f)(double), double const& precision, COLORREF const& COULEUR) const;
     void afficherPolynome(CPolynome monPoly, double const& precision, COLORREF const& COULEUR) const;
     void afficherIntervalles() const;
+
+    void setRectOffset(int const& x, int const& y);
     void setOrigin(int const& x, int const& y);
     void setAmplitude(int const& zoom_x, int const& zoom_y);
 
@@ -23,6 +25,7 @@ private:
     int m_rectx, m_recty;
     int m_zoomy, m_zoomx;
     int m_offsetx, m_offsety;
+    int m_rox, m_roy; //rectOffset
 };
 
 #endif

@@ -10,6 +10,9 @@ m_rectx(rect_x), m_recty(rect_y)
     HWND fenetreConsole = GetConsoleWindow();
     m_monDC = GetDC(fenetreConsole);
 
+    m_rox = 0; //par defaut
+    m_roy = 0;
+
     setAmplitude(zoom_x, zoom_y);
     setOrigin(x, y);
 }
@@ -22,42 +25,42 @@ void CFenetre::afficherRectV2(COLORREF const& COULEUR) const
     for(int m = 0; m <= m_zoomx; m++) //graduation abscisse
     {
         for(int m2 = 0; m2 <= m_recty; m2++) //grande graduation
-            SetPixel(m_monDC, m*intervalx, m2, RGB(100,100,100));
+            SetPixel(m_monDC, m_rox + m*intervalx, m_roy + m2, RGB(100,100,100));
 
         for(int m1 = -3; m1 <= 3; m1++) //epaisseur de la petite graduation
-            SetPixel(m_monDC, m*intervalx, m_offsety + m1, COULEUR);
+            SetPixel(m_monDC, m_rox + m*intervalx, m_roy + m_offsety + m1, COULEUR);
     }
 
 
     for(int n = 0; n <= m_zoomy; n++) //graduation abscisse
     {
         for(int n2 = 0; n2 <= m_rectx; n2++) //grande graduation
-            SetPixel(m_monDC, n2, n*intervaly, RGB(100,100,100));
+            SetPixel(m_monDC, m_rox + n2, m_roy + n*intervaly, RGB(100,100,100));
 
         for(int n1 = -3; n1 <= 3; n1++) //epaisseur de la graduation
-            SetPixel(m_monDC, m_offsetx + n1, n*intervaly, COULEUR);
+            SetPixel(m_monDC, m_rox + m_offsetx + n1, m_roy + n*intervaly, COULEUR);
     }
 
     for(int i = 0; i <= m_rectx; i++) //partie haute et basse
     {
-        SetPixel(m_monDC, i, 0, COULEUR);
-        SetPixel(m_monDC, i, m_recty, COULEUR);
+        SetPixel(m_monDC, m_rox + i, m_roy + 0, COULEUR);
+        SetPixel(m_monDC, m_rox + i, m_roy + m_recty, COULEUR);
     }
 
     for(int j = 0; j <= m_recty; j++) //partie gauche et droite
     {
-        SetPixel(m_monDC, 0, j, COULEUR);
-        SetPixel(m_monDC, m_rectx, j, COULEUR);
+        SetPixel(m_monDC, m_rox + 0, m_roy + j, COULEUR);
+        SetPixel(m_monDC, m_rox + m_rectx, m_roy + j, COULEUR);
     }
 
     for(int k = 0; k < m_rectx; k++) //axe des abscisses
     {
-        SetPixel(m_monDC, k, m_offsety, COULEUR);
+        SetPixel(m_monDC, m_rox + k, m_roy + m_offsety, COULEUR);
     }
 
     for(int l = 0; l < m_recty; l++) //axe des ordonnées
     {
-        SetPixel(m_monDC, m_offsetx, l, COULEUR);
+        SetPixel(m_monDC, m_rox + m_offsetx, m_roy + l, COULEUR);
     }
 }
 
@@ -73,7 +76,7 @@ void CFenetre::afficherCourbe(double (*f)(double), double const& precision, COLO
         int yC = -(m_offsety + intervaly*f(x)) + 2*m_offsety; //le - pour inverser la courbe
         if((m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty))
             //on n'affiche pas la courbe en dehors du cadre
-            SetPixel(m_monDC, m_offsetx + ((m_rectx/(xmax-xmin)*x)), yC, COULEUR);
+            SetPixel(m_monDC, m_rox + m_offsetx + ((m_rectx/(xmax-xmin)*x)), m_roy + yC, COULEUR);
     }
 }
 
@@ -105,8 +108,14 @@ void CFenetre::afficherPolynome(CPolynome monPoly, double const& precision, COLO
         int yC = -(m_offsety + intervaly*monPoly.calcule(x)) + 2*m_offsety; //le - pour inverser la courbe
         if((m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty))
             //on n'affiche pas la courbe en dehors du cadre
-            SetPixel(m_monDC, m_offsetx + ((m_rectx/(xmax-xmin)*x)), yC, COULEUR);
+            SetPixel(m_monDC, m_rox + m_offsetx + ((m_rectx/(xmax-xmin)*x)), m_roy + yC, COULEUR);
     }
+}
+
+void CFenetre::setRectOffset(int const& x, int const& y)
+{
+    m_rox = x;
+    m_roy = y;
 }
 
 void CFenetre::setOrigin(int const& x, int const& y)

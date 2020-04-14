@@ -15,9 +15,8 @@ double g(double x) {
 
 int main() {
 
-    CPolynome monPoly(3);
+    CPolynome monPoly(4);
     cin >> monPoly;
-    system("cls"); //on nettoie la console
     cout << monPoly << endl;
     
 
@@ -25,6 +24,9 @@ int main() {
 
     CFenetre maFenetre(400, 400);
     
+    maFenetre.setRectOffset(200, 10);   //expliquer dans le rapport que c'est juste un ajout
+                                        //de m_rox et m_roy dans tous les SetOffset
+
     maFenetre.afficherRectV2(RGB(255, 255, 255));
     maFenetre.afficherCourbe(f, precision, RGB(255, 0, 0));
     maFenetre.afficherCourbe(g, precision, RGB(0, 255, 0));
@@ -32,7 +34,6 @@ int main() {
     maFenetre.afficherIntervalles();
     //donner le passage en argument de la fonction dans
     //le rapport
-    
 
     cin.get(); cin.get(); //pause la console
     return 0;
