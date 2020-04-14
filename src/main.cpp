@@ -6,39 +6,54 @@
 using namespace std;
 
 double f(double x) {
-    return sin(x);
-}
-
-double g(double x) {
-    return cos(x);
+    return pow(x,2); //x^2
 }
 
 int main() {
 
-    CPolynome monPoly(4);
-    cin >> monPoly;
-    cout << monPoly << endl;
+    CPolynome monPoly(1); //création d'un polynome de degré 3
+    cin >> monPoly; //l'utilisateur rentre les coeffs
+    cout << monPoly << endl; //on affiche le polynôme
+
+    CFenetre maFenetre(200, 200, 6, 6, 3, 5); //création d'une fenêtre de taille 200x200
     
+    //placement de la fenêtre dans la console (optionnel)
+    maFenetre.setRectOffset(10, 240);
 
-    double precision = 0.01; //la precision augmente le nombre de points
+    maFenetre.afficherRectV2(RGB(255, 255, 255)); //affichage des graduations
+    maFenetre.afficherPolynome(monPoly, 0.001, RGB(255,0,0));
 
-    CFenetre maFenetre1(200, 200, 3.14*6, 4, 9, 2);
-    maFenetre1.setRectOffset(300, 10);   //expliquer dans le rapport que c'est juste un ajout
-                                        //de m_rox et m_roy dans tous les SetOffset
 
-    maFenetre1.afficherRectV2(RGB(255, 255, 255));
-    maFenetre1.afficherCourbe(f, precision, RGB(255, 0, 0));
-    maFenetre1.afficherCourbe(g, precision, RGB(0, 255, 0));
-    maFenetre1.afficherIntervalles();
 
-    precision = 0.001;
-    CFenetre maFenetre2(200, 200, 4, 4, 1, 3);
-    maFenetre2.setRectOffset(510, 10);
-    maFenetre2.afficherRectV2(RGB(255, 255, 255));
-    maFenetre2.afficherPolynome(monPoly, precision, RGB(0,0,255));
-    maFenetre2.afficherIntervalles();
-    //donner le passage en argument de la fonction dans
-    //le rapport
+    CPolynome monPoly2(3); //création d'un polynome de degré 3
+    cin >> monPoly2; //l'utilisateur rentre les coeffs
+    cout << monPoly2 << endl; //on affiche le polynôme
+
+    CFenetre maFenetre2(200, 200, 6, 6, 3, 5); //création d'une fenêtre de taille 200x200
+    
+    //placement de la fenêtre dans la console (optionnel)
+    maFenetre2.setRectOffset(220, 240);
+
+    maFenetre2.afficherRectV2(RGB(255, 255, 255)); //affichage des graduations
+    maFenetre2.afficherPolynome(monPoly2, 0.001, RGB(255,0,0));
+
+
+
+    CPolynome monPoly3(4); //création d'un polynome de degré 3
+    cin >> monPoly3; //l'utilisateur rentre les coeffs
+    cout << monPoly3 << endl; //on affiche le polynôme
+
+    CFenetre maFenetre3(200, 200, 6, 6, 3, 3); //création d'une fenêtre de taille 200x200
+    
+    //placement de la fenêtre dans la console (optionnel)
+    maFenetre3.setRectOffset(430, 240);
+
+    maFenetre3.afficherRectV2(RGB(255, 255, 255)); //affichage des graduations
+    maFenetre3.afficherPolynome(monPoly3, 0.001, RGB(255,0,0));
+
+    maFenetre3.afficherIntervalles();
+
+
 
     cin.get(); cin.get(); //pause la console
     return 0;

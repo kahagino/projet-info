@@ -90,7 +90,7 @@ void CFenetre::afficherIntervalles() const
     double ymax = (m_recty - m_offsety)/(intervaly);
 
     cout << "Dx[" << xmin << ";" << xmax << "]";
-    cout << "Dy[" << ymin << ";" << ymax << "]" << " ";
+    cout << "Dy[" << -ymax << ";" << -ymin << "]" << " ";
 }
 
 void CFenetre::afficherPolynome(CPolynome monPoly, double const& precision, COLORREF const& COULEUR) const
