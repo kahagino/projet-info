@@ -14,6 +14,7 @@ public:
     void afficherRectV2(COLORREF const& COULEUR) const;
     void afficherCourbe(double (*f)(double), double const& precision, COLORREF const& COULEUR) const;
     void afficherPolynome(CPolynome monPoly, double const& precision, COLORREF const& COULEUR) const;
+    void afficherIntervalles() const;
     void setOrigin(int const& x, int const& y);
     void setAmplitude(int const& zoom_x, int const& zoom_y);
 

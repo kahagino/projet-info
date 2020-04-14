@@ -21,7 +21,7 @@ int main() {
 
     CPolynome monPoly(3);
     cin >> monPoly;
-    system("cls");
+    system("cls"); //on nettoie la console
     cout << monPoly << endl;
     
 
@@ -33,6 +33,7 @@ int main() {
     maFenetre.afficherCourbe(f, precision, RGB(255, 0, 0));
     maFenetre.afficherCourbe(g, precision, RGB(0, 255, 0));
     maFenetre.afficherPolynome(monPoly, precision, RGB(0,0,255));
+    maFenetre.afficherIntervalles();
     //donner le passage en argument de la fonction dans
     //le rapport
     
