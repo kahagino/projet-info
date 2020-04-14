@@ -12,13 +12,19 @@ double f(double x) {
 double g(double x) {
     return cos(x);
 }
-
+/*
+double h(double x, CPolynome monPoly) {
+    return monPoly.calcule(x);
+}
+*/
 int main() {
 
-    CPolynome monPoly(2);
+    CPolynome monPoly(3);
     cin >> monPoly;
+    system("cls");
     cout << monPoly << endl;
-    /*
+    
+
     double precision = 0.001; //la precision augmente le nombre de points
 
     CFenetre maFenetre(400, 400);
@@ -26,10 +32,11 @@ int main() {
     maFenetre.afficherRectV2(RGB(255, 255, 255));
     maFenetre.afficherCourbe(f, precision, RGB(255, 0, 0));
     maFenetre.afficherCourbe(g, precision, RGB(0, 255, 0));
+    maFenetre.afficherPolynome(monPoly, precision, RGB(0,0,255));
     //donner le passage en argument de la fonction dans
     //le rapport
-    */
+    
 
-    //cin.ignore(); //pause la console
+    cin.get(); cin.get(); //pause la console
     return 0;
 }

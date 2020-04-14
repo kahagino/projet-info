@@ -83,6 +83,28 @@ void CFenetre::afficherCourbe(double (*f)(double), double const& precision, COLO
     }
 }
 
+void CFenetre::afficherPolynome(CPolynome monPoly, double const& precision, COLORREF const& COULEUR) const
+{
+    double intervalx = (double)m_rectx/m_zoomx;
+    double intervaly = (double)m_recty/m_zoomy;
+    double xmin = (-m_offsetx)/(intervalx);
+    double xmax = (m_rectx - m_offsetx)/(intervalx);
+
+    double ymin = (-m_offsety)/(intervaly);
+    double ymax = (m_recty - m_offsety)/(intervaly);
+
+    cout << "Dx[" << xmin << ";" << xmax << "]";
+    cout << "Dy[" << ymin << ";" << ymax << "]" << " ";
+
+    for(double x = xmin; x < xmax; x+=precision)
+    {
+        int yC = -(m_offsety + intervaly*monPoly.calcule(x)) + 2*m_offsety; //le - pour inverser la courbe
+        if((m_offsetx + ((m_rectx/(xmax-xmin)*x)) < m_rectx && yC < m_recty))
+            //on n'affiche pas la courbe en dehors du cadre
+            SetPixel(m_monDC, m_offsetx + ((m_rectx/(xmax-xmin)*x)), yC, COULEUR);
+    }
+}
+
 void CFenetre::setOrigin(int const& x, int const& y)
 {
     m_offsetx = x * (double)m_rectx/m_zoomx; //car floor est utilisé dans SetPixel

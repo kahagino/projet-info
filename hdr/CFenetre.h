@@ -2,6 +2,7 @@
 #define DEF_CFENETRE
 
 #include <windows.h>
+#include <CPolynome.h>
 
 class CFenetre {
 public:
@@ -12,6 +13,7 @@ public:
 
     void afficherRectV2(COLORREF const& COULEUR) const;
     void afficherCourbe(double (*f)(double), double const& precision, COLORREF const& COULEUR) const;
+    void afficherPolynome(CPolynome monPoly, double const& precision, COLORREF const& COULEUR) const;
     void setOrigin(int const& x, int const& y);
     void setAmplitude(int const& zoom_x, int const& zoom_y);
 
