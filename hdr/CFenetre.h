@@ -5,16 +5,20 @@
 
 class CFenetre {
 public:
-    CFenetre(int rect_x, int rect_y);
+    //rect_x et rect_y : largeur et longueur de la fenêtre en pixel
+    //zoom_x et zoom_y : amplitude en abscisse et ordonnée de la fenêtre
+    //x et y : coordonnées de l'origine dans la base de zoom_x et zoom_y
+    CFenetre(int rect_x, int rect_y, int zoom_x = 4, int zoom_y = 4, int x = 2, int y = 2);
 
-    void afficherRectV2(int const& zoom_x, int const& zoom_y, COLORREF const& COULEUR) const;
-    void afficherCourbe(double (*f)(double), double const& precision, int const& zoom_x, int const& zoom_y,
-                        COLORREF const& COULEUR) const;
-    void setOrigin(int const& x, int const& y, int const& zoom_x, int const& zoom_y);
+    void afficherRectV2(COLORREF const& COULEUR) const;
+    void afficherCourbe(double (*f)(double), double const& precision, COLORREF const& COULEUR) const;
+    void setOrigin(int const& x, int const& y);
+    void setAmplitude(int const& zoom_x, int const& zoom_y);
 
 private:
     HDC m_monDC;
     int m_rectx, m_recty;
+    int m_zoomy, m_zoomx;
     int m_offsetx, m_offsety;
 };
 

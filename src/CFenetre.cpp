@@ -3,23 +3,23 @@
 #include <math.h>
 using namespace std;
 
-CFenetre::CFenetre(int rect_x, int rect_y):
+CFenetre::CFenetre(int rect_x, int rect_y, int zoom_x, int zoom_y, int x, int y):
 m_rectx(rect_x), m_recty(rect_y)
 {
     //initialisation de la console
     HWND fenetreConsole = GetConsoleWindow();
     m_monDC = GetDC(fenetreConsole);
 
-    m_offsetx = 0;
-    m_offsety = 0;
+    setAmplitude(zoom_x, zoom_y);
+    setOrigin(x, y);
 }
 
-void CFenetre::afficherRectV2(int const& zoom_x, int const& zoom_y, COLORREF const& COULEUR) const
+void CFenetre::afficherRectV2(COLORREF const& COULEUR) const
 {
-    double intervalx = (double)m_rectx/zoom_x; //on converti en double pour eviter les décalages dû aux arrondies
-    double intervaly = (double)m_recty/zoom_y; //SetPixel gère tout seul le cas des coordonnées en double
+    double intervalx = (double)m_rectx/m_zoomx; //on converti en double pour eviter les décalages dû aux arrondies
+    double intervaly = (double)m_recty/m_zoomy; //SetPixel gère tout seul le cas des coordonnées en double
 
-    for(int m = 0; m <= zoom_x; m++) //graduation abscisse
+    for(int m = 0; m <= m_zoomx; m++) //graduation abscisse
     {
         for(int m2 = 0; m2 <= m_recty; m2++) //grande graduation
             SetPixel(m_monDC, m*intervalx, m2, RGB(100,100,100));
@@ -29,7 +29,7 @@ void CFenetre::afficherRectV2(int const& zoom_x, int const& zoom_y, COLORREF con
     }
 
 
-    for(int n = 0; n <= zoom_y; n++) //graduation abscisse
+    for(int n = 0; n <= m_zoomy; n++) //graduation abscisse
     {
         for(int n2 = 0; n2 <= m_rectx; n2++) //grande graduation
             SetPixel(m_monDC, n2, n*intervaly, RGB(100,100,100));
@@ -61,19 +61,18 @@ void CFenetre::afficherRectV2(int const& zoom_x, int const& zoom_y, COLORREF con
     }
 }
 
-void CFenetre::afficherCourbe(double (*f)(double), double const& precision, int const& zoom_x, int const& zoom_y,
-COLORREF const& COULEUR) const
+void CFenetre::afficherCourbe(double (*f)(double), double const& precision, COLORREF const& COULEUR) const
 {
-    double intervalx = (double)m_rectx/zoom_x;
-    double intervaly = (double)m_recty/zoom_y;
+    double intervalx = (double)m_rectx/m_zoomx;
+    double intervaly = (double)m_recty/m_zoomy;
     double xmin = (-m_offsetx)/(intervalx);
     double xmax = (m_rectx - m_offsetx)/(intervalx);
 
     double ymin = (-m_offsety)/(intervaly);
     double ymax = (m_recty - m_offsety)/(intervaly);
 
-    cout << "Dx[" << xmin << ";" << xmax << "]" << endl;
-    cout << "Dy[" << ymin << ";" << ymax << "]";
+    cout << "Dx[" << xmin << ";" << xmax << "]";
+    cout << "Dy[" << ymin << ";" << ymax << "]" << " ";
 
     for(double x = xmin; x < xmax; x+=precision)
     {
@@ -84,8 +83,14 @@ COLORREF const& COULEUR) const
     }
 }
 
-void CFenetre::setOrigin(int const& x, int const& y, int const& zoom_x, int const& zoom_y)
+void CFenetre::setOrigin(int const& x, int const& y)
 {
-    m_offsetx = x * (double)m_rectx/zoom_x; //car floor est utilisé dans SetPixel
-    m_offsety = y * (double)m_recty/zoom_y; //on veut que tout s'aligne parfaitement
+    m_offsetx = x * (double)m_rectx/m_zoomx; //car floor est utilisé dans SetPixel
+    m_offsety = y * (double)m_recty/m_zoomy; //on veut que tout s'aligne parfaitement
+}
+
+void CFenetre::setAmplitude(int const& zoom_x, int const& zoom_y)
+{
+    m_zoomx = zoom_x;
+    m_zoomy = zoom_y;
 }

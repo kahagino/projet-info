@@ -8,19 +8,21 @@ double f(double x) {
     return sin(x);
 }
 
+double g(double x) {
+    return cos(x);
+}
+
 int main() {
-    //int min(-10), max(10);
-    int zoom_y = 2; //compression en ordonnée
-    int zoom_x = int(4*3.14); //compression en abscisse
     double precision = 0.001; //la precision augmente le nombre de points
 
-    CFenetre maFenetre(800, 400);
-    maFenetre.setOrigin(zoom_x/2, (zoom_y/2), zoom_x, zoom_y);
-    maFenetre.afficherRectV2(zoom_x, zoom_y, RGB(255, 255, 255));
-    maFenetre.afficherCourbe(f, precision, zoom_x, zoom_y, RGB(255, 0, 0));
+    CFenetre maFenetre(400, 400, 10);
+    
+    maFenetre.afficherRectV2(RGB(255, 255, 255));
+    maFenetre.afficherCourbe(f, precision, RGB(255, 0, 0));
+    maFenetre.afficherCourbe(g, precision, RGB(0, 255, 0));
     //donner le passage en argument de la fonction dans
     //le rapport
 
-    cin.ignore();
+    cin.ignore(); //pause la console
     return 0;
 }
