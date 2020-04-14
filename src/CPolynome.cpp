@@ -1,5 +1,6 @@
 #include "CPolynome.h"
 
+#include <math.h>
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,20 @@ CPolynome::CPolynome(int nbcoeff): m_nc(nbcoeff)
 CPolynome::~CPolynome()
 {
     delete[] m_coeff;
+}
+
+double CPolynome::calcule(double const& x)
+{
+    int puissance = m_nc - 1;
+
+    double resulat = 0; //on initialise la somme
+    for(int i = 0; i < m_nc; i++)
+    {
+        resulat += m_coeff[i] * pow(x, puissance);
+        puissance -= 1;
+    }
+
+    return resulat;
 }
 
 void CPolynome::afficher() const

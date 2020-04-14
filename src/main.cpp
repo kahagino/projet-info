@@ -18,8 +18,6 @@ int main() {
     CPolynome monPoly(2);
     cin >> monPoly;
     cout << monPoly << endl;
-
-    cin.get();cin.get();
     /*
     double precision = 0.001; //la precision augmente le nombre de points
 

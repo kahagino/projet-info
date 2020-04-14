@@ -8,6 +8,8 @@ public:
     CPolynome(int nbcoeff);
     ~CPolynome();
 
+    double calcule(double const& x);
+
     void afficher() const;
     void saisirCoeff();
 
