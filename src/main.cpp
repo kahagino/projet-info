@@ -12,11 +12,7 @@ double f(double x) {
 double g(double x) {
     return cos(x);
 }
-/*
-double h(double x, CPolynome monPoly) {
-    return monPoly.calcule(x);
-}
-*/
+
 int main() {
 
     CPolynome monPoly(3);
