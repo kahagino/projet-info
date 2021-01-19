@@ -1,5 +1,5 @@
-# projetInfo
-## Tracer de courbe/polynôme dans la console
+# projet info
+## Tracé de courbe/polynôme dans la console
 
 Vous retrouverez le code et les informations de compilation au sein du projet.
 
