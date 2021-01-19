@@ -1,6 +1,7 @@
 # projet info
-## Tracé de courbe/polynôme dans la console
+Tracé de courbe/polynôme dans la console
 
-Vous retrouverez le code et les informations de compilation au sein du projet.
+![screenshot_résultat](screenshot_resultat.png)
 
-![screenshot_resultat](https://github.com/leo-pnt/projetInfo/blob/master/screenshot_resultat.png)
+## Compilation
+`g++ .\src\main.cpp .\src\CFenetre.cpp .\src\CPolynome.cpp -I .\hdr\ -lgdi32 -o main`
