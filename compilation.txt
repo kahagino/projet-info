@@ -1,3 +1,0 @@
-La compilation se fait avec g++
-
-projetInfo> g++ .\src\main.cpp .\src\CFenetre.cpp .\src\CPolynome.cpp -I .\hdr\ -lgdi32 -o main
