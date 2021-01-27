@@ -1,5 +1,7 @@
 # projet info
-Tracé de courbe/polynôme dans la console
+Tracé de courbe/polynôme dans la console.
+
+Projet réalisé dans le cadre d'une évalutation à [Polytech Orléans](https://www.univ-orleans.fr/fr/polytech).
 
 ![screenshot_résultat](screenshot_resultat.png)
 
